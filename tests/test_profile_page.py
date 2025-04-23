@@ -1,7 +1,7 @@
-from data import Data
+import allure
+
 from pages.profile_page import ProfilePage
 from urls import Urls
-import allure
 
 
 class TestProfilePage:
@@ -84,6 +84,7 @@ class TestProfilePage:
         profilepage.click_order_history_button()
         assert profilepage.check_profile_form_invisible()
 
+    @allure.title('При клике на кнопку "Выход" происходит переход со страницы профиля на страницу логина')
     def test_click_exit_button_go_to_login_page(self, driver, get_access_token):
         profilepage = ProfilePage(driver)
 
@@ -106,6 +107,7 @@ class TestProfilePage:
         profilepage.wait_url(Urls.login_page_url)
         assert profilepage.get_current_url() == Urls.login_page_url
 
+    @allure.title('При клике на кнопку "Конструктор" происходит переход  со страницы профиля на главную страницу')
     def test_click_constructor_from_profile_go_to_home_page(self,driver, get_access_token):
         profilepage = ProfilePage(driver)
 
@@ -128,6 +130,7 @@ class TestProfilePage:
         profilepage.wait_url(Urls.main_url_authorized)
         assert  profilepage.get_current_url() == Urls.main_url_authorized
 
+    @allure.title('При клике на кнопку "Лента заказов" происходит переход со страницы профиля на страницу заказов')
     def test_click_order_list_button_go_to_orders_page(self, driver, get_access_token):
         profilepage = ProfilePage(driver)
         profilepage.get_url(Urls.main_url)

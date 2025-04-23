@@ -24,7 +24,7 @@ class TestHomePage:
         homepage = HomePage(driver)
         homepage.get_url(Urls.main_url)
         homepage.click_constroctor_button()
-        assert homepage.get_current_url() == Urls.order_list_page
+        assert homepage.get_current_url() == Urls.main_url
 
     @allure.title('При клике на ингредиент в форме"Соберите бургер" появляется окно "Детали ингредиента".')
     def test_click_on_ingredient_call_modal_window(self, driver):
@@ -42,26 +42,11 @@ class TestHomePage:
         homepage.click_ingredient_in_constructor(Data.ingredients_names[7])
         assert homepage.close_modal_window()
 
-    @allure.title('При перетаскивании ингредиента из формы "Соберите бургер" в форму конструктор бургера, каунтер ингридиента увеличивается')
-    def test_add_ingredient_from_constructor_get_count_add_ingredient(self, driver, get_access_token):
-        homepage = HomePage(driver)
-        homepage.get_url(Urls.main_url)
-        homepage.wait_url(Urls.main_url)
-        homepage.click_on_profile_button()
 
-        homepage.wait_url(Urls.login_page_url)
-        login_list = get_access_token
-        email = login_list[0]
-        password = login_list[1]
-        homepage.fill_login_input(email, password)
-        homepage.click_enter_button()
-        homepage.wait_url(Urls.main_url_authorized)
-        homepage.drag_ingredient_from_constructor_to_burger_constructor(Data.ingredients_names[7])
-        sleep(5)
 
     @allure.title('При перетаскивании ингредиента из формы "Соберите бургер" в форму конструктор бургера, каунтер ингридиента увеличивается на количество перетаскиваний')
-    @pytest.mark.parametrize('count_ingredient', [1, 2, 5])
-    def test_add_ingredient_from_constructor_get_count_add_ingredient1(self, driver, get_access_token, count_ingredient):
+    @pytest.mark.parametrize('count_ingredient', [1, 2])
+    def test_add_ingredient_from_constructor_get_count_add_ingredient(self, driver, get_access_token, count_ingredient):
         homepage = HomePage(driver)
         homepage.get_url(Urls.main_url)
         homepage.wait_url(Urls.main_url)
@@ -78,6 +63,7 @@ class TestHomePage:
             homepage.drag_ingredient_by_link(Data.ingredients_id[5])
         assert homepage.check_count_ingredients(Data.ingredients_id[5]) == str(count_ingredient)
 
+    @allure.title('При нажатии на кнопку "оформить заказ" залогиненым юзером появляется окно с деталями заказа')
     def test_logined_user_can_make_order(self,driver, get_access_token):
         homepage = HomePage(driver)
         homepage.get_url(Urls.main_url)

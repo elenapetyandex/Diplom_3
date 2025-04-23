@@ -5,7 +5,7 @@ from selenium import webdriver
 
 from api_methods import ApiMethods
 from data import Data
-from urls import Urls
+
 
 
 @pytest.fixture(params=['firefox', 'chrome'])
@@ -45,8 +45,8 @@ def get_access_token():
 
     login_list.append(access_token)
     yield login_list
-    delete_response = ApiMethods.delete_user(access_token)
-    print(delete_response.json())
+    ApiMethods.delete_user(access_token)
+
 
 @pytest.fixture
 def get_order_number(get_access_token):
@@ -65,12 +65,7 @@ def get_order_number(get_access_token):
 
     login_list.append(order_number)
     yield login_list
-    print(login_list)
+    ApiMethods.delete_user(access_token)
 
-@pytest.fixture
-def upload_token_to_session(driver, get_access_token):
-    token_response = get_access_token
-    driver.execute_script("window.localStorage.setItem(arguments[0], arguments[1]);", 'accessToken',
-                          token_response[0])
-    #driver.execute_script("window.localStorage.setItem(arguments[0], arguments[1]);", 'refreshToken',
-                          #token_response[1])
+
+

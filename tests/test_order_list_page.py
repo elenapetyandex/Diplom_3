@@ -28,34 +28,43 @@ class TestOrderListPage:
         ordelistpage.wait_url(Urls.order_list_page)
         assert ordelistpage.check_order_in_order_list(order_number)
 
+    @allure.title('Проверка увеличения числа счетчика заказов "Выполнено за все время" при создании заказа')
     def test_counter_value_increase_with_creating_order(self, driver, get_order_number):
         ordelistpage = OrderListPage(driver)
         ordelistpage.get_url(Urls.order_list_page)
-        ordelistpage.wait_url(Urls.order_list_page)
         counter_before = ordelistpage.get_caunter_all_time_value()
         new_order = get_order_number
-        print(new_order[3])
+        ordelistpage.refresh()
+        ordelistpage.wait_url(Urls.order_list_page)
+
         counter_after = ordelistpage.get_caunter_all_time_value()
         assert counter_after > counter_before
 
+    @allure.title('Проверка появления номера заказа в списке "В работе" при создании заказа')
     def test_order_is_in_process_when_create_order(self, driver, get_order_number):
         ordelistpage = OrderListPage(driver)
         ordelistpage.get_url(Urls.main_url)
         ordelistpage.wait_url(Urls.main_url)
         new_order = get_order_number
         order_string = f'0{new_order[3]}'
-        #sleep(3)
+
         ordelistpage.click_order_list_button()
         ordelistpage.wait_url(Urls.order_list_page)
-        orders_in_process = ordelistpage.get_list_orders_in_process(new_order[3])
-        #sleep(3)
+        sleep(5)  # не получилось по-другому поставить паузу здесь
+        orders_in_process = ordelistpage.get_list_orders_in_process()
+
         assert order_string in orders_in_process
 
+    @allure.title('Проверка увеличения числа счетчика заказов "выполнено за сегодня" при создании заказа')
     def test_counter_today_get_add_orders(self, driver, get_order_number):
         ordelistpage = OrderListPage(driver)
         ordelistpage.get_url(Urls.order_list_page)
         ordelistpage.wait_url(Urls.order_list_page)
+        count_before = ordelistpage.get_today_order_counter_count()
         new_order = get_order_number
-        order_string = f'0{new_order[3]}'
+        ordelistpage.refresh()
+        ordelistpage.wait_url(Urls.order_list_page)
+        count_after = ordelistpage.get_today_order_counter_count()
+        assert count_after > count_before
 
 

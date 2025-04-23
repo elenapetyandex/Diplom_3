@@ -1,11 +1,5 @@
-
-import allure
-from selenium import webdriver
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support import expected_conditions
-from selenium.webdriver.support.wait import WebDriverWait
-from pages.base_page import BasePage
 from locators.home_page_locators import HomePageLocators
+from pages.base_page import BasePage
 
 
 class HomePage(BasePage):

@@ -4,13 +4,8 @@ from locators.base_page_locators import BasePageLocators
 
 
 class HomePageLocators(BasePageLocators):
-    switch_bulki = [By.XPATH, ".//span[text()='Булки']/parent::*"]  #
-    switch_nachinki = [By.XPATH, ".//span[text()='Начинки']/parent::*"]  #
+
     ingredients = [By.XPATH,".//ul[@class='BurgerIngredients_ingredients__list__2A-mT']"]  # все ингридиенты в конструкторе. 0 - булки, 1- соусы, 2 - начинки
-    switch_souses = (By.XPATH, ".//span[text()='Соусы']/parent::*")  # кнопка конструктора "Соусы"
-    souses_img = (By.XPATH, ".//img[contains(@alt, 'Соус')]")  # соусы в конструкторе картинки
-    bulki_img = (By.XPATH, ".//img[contains(@alt, ' ,булка')]")  # картинки булок в конструкторе
-    meat_img = (By.XPATH, ".//img[contains(@alt, ' ,булка')]")  # картинка мясо в конструкторе
     ingredient_modal_window = [By.XPATH, ".//*[text()='Детали ингредиента']"] # всплывающее окно с деталями ингредиента
     modal_close = [By.XPATH,".//*[contains(@class, 'Modal_modal__close_modified__3V5XS')]"] # крестик закрытия в окне "Детали ингредиента"
     burger_constructor = [By.CLASS_NAME, 'BurgerConstructor_basket__list__l9dp_'] #конструктор бургера для заказа

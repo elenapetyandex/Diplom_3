@@ -1,4 +1,4 @@
-import allure
+
 
 from locators.forgot_password_locators import ForgotPasswordLocators
 from pages.base_page import BasePage

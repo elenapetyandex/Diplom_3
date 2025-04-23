@@ -2,7 +2,6 @@ import allure
 
 from data import Data
 from pages.forgot_password_page import ForgotPasswordPage
-from pages.home_page import HomePage
 from urls import Urls
 
 

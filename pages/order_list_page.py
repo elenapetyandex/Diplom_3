@@ -19,20 +19,27 @@ class OrderListPage(BasePage):
         return self.wait_visibility_of_element(self.locators.get_order_locator(order_number))
 
     def get_caunter_all_time_value(self):
+
+        self.wait_visibility_of_element(self.locators.all_orders_counter)
         return self.get_text(self.locators.all_orders_counter)
 
-    def get_list_orders_in_process(self, new_order):
-
+    def get_list_orders_in_process(self):
+        self.wait_visibility_of_element(self.locators.orders_in_process)
         orders_list = self.find_elements(self.locators.orders_in_process)
         orders_process_numbers = []
         for order in orders_list:
             text = order.text
             orders_process_numbers.append(text)
-        print(orders_process_numbers)
+
         return orders_process_numbers
 
 
+    def get_today_order_counter_count(self):
 
+        self.wait_visibility_of_element(self.locators.order_counter_today)
+
+        element = self.find_element(self.locators.order_counter_today)
+        return element.text
 
 
 
