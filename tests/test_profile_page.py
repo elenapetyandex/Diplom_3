@@ -3,7 +3,7 @@ import allure
 from pages.profile_page import ProfilePage
 from urls import Urls
 
-
+@allure.feature('страница Личный кабинет.')
 class TestProfilePage:
     @allure.title('При клике по кнопке главной страницы "Личный кабинет"  авторизованным пользователем происходит переход на страницу "Профиль".')
     def test_click_profile_logined_user_go_to_profile_page(self, driver, get_access_token):

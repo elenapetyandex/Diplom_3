@@ -4,7 +4,7 @@ from data import Data
 from pages.forgot_password_page import ForgotPasswordPage
 from urls import Urls
 
-
+@allure.feature('Страница "Восстановление пароля".')
 class TestForgotPasswordPage:
 
     @allure.title('Переход на страницу восстановления пароля при клике на кнопку "Восстановить пароль"')

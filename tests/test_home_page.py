@@ -9,7 +9,7 @@ from data import Data
 from pages.home_page import HomePage
 from urls import Urls
 
-
+@allure.feature('Главная страница: конструктор.')
 class TestHomePage:
     @allure.title('Проверка перехода на страницу ленты заказов при клике на кнопку "Лента заказов"')
     def test_click_on_order_list_go_to_order_list_page(self, driver):
@@ -24,6 +24,7 @@ class TestHomePage:
         homepage = HomePage(driver)
         homepage.get_url(Urls.main_url)
         homepage.click_constroctor_button()
+
         assert homepage.get_current_url() == Urls.main_url
 
     @allure.title('При клике на ингредиент в форме"Соберите бургер" появляется окно "Детали ингредиента".')
@@ -58,7 +59,7 @@ class TestHomePage:
         password = login_list[1]
         homepage.fill_login_input(email, password)
         homepage.click_enter_button()
-        homepage.wait_url(Urls.main_url_authorized)
+        homepage.wait_url(Urls.main_url)
         for _ in range (count_ingredient):
             homepage.drag_ingredient_by_link(Data.ingredients_id[5])
         assert homepage.check_count_ingredients(Data.ingredients_id[5]) == str(count_ingredient)
@@ -76,7 +77,7 @@ class TestHomePage:
         password = login_list[1]
         homepage.fill_login_input(email, password)
         homepage.click_enter_button()
-        homepage.wait_url(Urls.main_url_authorized)
+        homepage.wait_url(Urls.main_url)
         homepage.drag_ingredient_by_link(random.choice(Data.ingredients_id))
         homepage.drag_ingredient_by_link(random.choice(Data.ingredients_id))
         homepage.drag_ingredient_by_link(random.choice(Data.ingredients_id))

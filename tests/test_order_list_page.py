@@ -5,7 +5,7 @@ import allure
 from pages.order_list_page import OrderListPage
 from urls import Urls
 
-
+@allure.feature('страница "Лента заказов".')
 class TestOrderListPage:
     @allure.title('Проверка появления модального окна с информацией о заказе при клике на заказ в ленте заказов')
     def test_click_on_order_get_modal_window(self, driver, get_order_number): #
@@ -34,10 +34,11 @@ class TestOrderListPage:
         ordelistpage.get_url(Urls.order_list_page)
         counter_before = ordelistpage.get_caunter_all_time_value()
         new_order = get_order_number
+        order_number = new_order[3]
         ordelistpage.refresh()
         ordelistpage.wait_url(Urls.order_list_page)
 
-        counter_after = ordelistpage.get_caunter_all_time_value()
+        counter_after = ordelistpage.get_caunter_all_time_value(order_number)
         assert counter_after > counter_before
 
     @allure.title('Проверка появления номера заказа в списке "В работе" при создании заказа')
@@ -50,7 +51,8 @@ class TestOrderListPage:
 
         ordelistpage.click_order_list_button()
         ordelistpage.wait_url(Urls.order_list_page)
-        sleep(5)  # не получилось по-другому поставить паузу здесь
+        ordelistpage.refresh()
+
         orders_in_process = ordelistpage.get_list_orders_in_process()
 
         assert order_string in orders_in_process
@@ -62,9 +64,7 @@ class TestOrderListPage:
         ordelistpage.wait_url(Urls.order_list_page)
         count_before = ordelistpage.get_today_order_counter_count()
         new_order = get_order_number
-        ordelistpage.refresh()
-        ordelistpage.wait_url(Urls.order_list_page)
+        order_string = f'0{new_order[3]}'
         count_after = ordelistpage.get_today_order_counter_count()
         assert count_after > count_before
-
 
