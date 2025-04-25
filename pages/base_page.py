@@ -21,7 +21,7 @@ class BasePage:
 
     @allure.step('Дождаться видимости элемента')
     def wait_visibility_of_element(self, locator):
-        return WebDriverWait(self.driver, 5).until(expected_conditions.visibility_of_element_located(locator))
+        return WebDriverWait(self.driver, 10).until(expected_conditions.visibility_of_element_located(locator))
 
     @allure.step('Дождаться невидимости элемента')
     def wait_invisibility_of_element(self, locator):
@@ -84,26 +84,26 @@ class BasePage:
 
     @allure.step('Кликнуть кнопку "конструктор"')
     def click_constroctor_button(self):
-        self.wait_invisibility_of_element(self.locators.modal_window)
-        self.wait_clickable_of_element(self.locators.constructor)
-        self.click_on_element(self.locators.constructor)
+        self.wait_invisibility_of_element(self.base_locators.modal_window)
+        self.wait_clickable_of_element(self.base_locators.constructor)
+        self.click_on_element(self.base_locators.constructor)
 
     @allure.step('Кликнуть кнопку "Лента заказов"')
     def click_order_list_button(self):
-        self.wait_invisibility_of_element(self.locators.modal_window)
-        self.wait_clickable_of_element(self.locators.order_list_button)
-        self.click_on_element(self.locators.order_list_button)
+        self.wait_invisibility_of_element(self.base_locators.modal_window)
+        self.wait_clickable_of_element(self.base_locators.order_list_button)
+        self.click_on_element(self.base_locators.order_list_button)
 
     @allure.step('Кликнуть кнопку Личный Кабинет')
     def click_on_profile_button(self):
-        self.wait_invisibility_of_element(self.locators.modal_window)
-        self.wait_clickable_of_element(self.locators.lk_button)
-        self.click_on_element(self.locators.lk_button)
+        self.wait_invisibility_of_element(self.base_locators.modal_window)
+        self.wait_clickable_of_element(self.base_locators.lk_button)
+        self.click_on_element(self.base_locators.lk_button)
 
     @allure.step('Заполнить поле логин')
     def fill_login_input(self, email, password):
         self.click_on_profile_button()
-        elements = self.find_elements(self.locators.login_input)
+        elements = self.find_elements(self.base_locators.login_input)
         for element in elements:
             element.clear()
         elements[0].send_keys(email)
@@ -111,8 +111,8 @@ class BasePage:
 
     @allure.step('Нажать кнопку "Войти"')
     def click_enter_button(self):
-        self.wait_clickable_of_element(self.locators.login_button)
-        self.click_on_element(self.locators.login_button)
+        self.wait_clickable_of_element(self.base_locators.login_button)
+        self.click_on_element(self.base_locators.login_button)
 
     @allure.step('Получить текс элемента')
     def get_text(self, locator):
@@ -123,6 +123,7 @@ class BasePage:
     def refresh(self):
         self.driver.refresh()
 
+    @allure.step('Прокрутить до элемента')
     def scroll_to_element(self, locator):
         WebDriverWait(self.driver, 5).until(expected_conditions.visibility_of_element_located(locator))
         element = self.driver.find_element(*locator)

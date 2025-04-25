@@ -38,7 +38,7 @@ class TestOrderListPage:
         ordelistpage.refresh()
         ordelistpage.wait_url(Urls.order_list_page)
 
-        counter_after = ordelistpage.get_caunter_all_time_value(order_number)
+        counter_after = ordelistpage.get_caunter_all_time_value()
         assert counter_after > counter_before
 
     @allure.title('Проверка появления номера заказа в списке "В работе" при создании заказа')
@@ -46,8 +46,9 @@ class TestOrderListPage:
         ordelistpage = OrderListPage(driver)
         ordelistpage.get_url(Urls.main_url)
         ordelistpage.wait_url(Urls.main_url)
-        new_order = get_order_number
-        order_string = f'0{new_order[3]}'
+        order_number = get_order_number[3]
+
+        order_string = f'0{order_number}'
 
         ordelistpage.click_order_list_button()
         ordelistpage.wait_url(Urls.order_list_page)

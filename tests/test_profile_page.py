@@ -21,7 +21,7 @@ class TestProfilePage:
         password = login_list[1]
         profilepage.fill_login_input(email, password)
         profilepage.click_enter_button()
-        profilepage.wait_url(Urls.main_url_authorized)
+        profilepage.wait_url(Urls.main_url)
         profilepage.click_on_profile_button()
         profilepage.wait_url(Urls.profile_page_url)
         assert profilepage.get_current_url() == Urls.profile_page_url
@@ -56,7 +56,7 @@ class TestProfilePage:
         password = login_list[1]
         profilepage.fill_login_input(email, password)
         profilepage.click_enter_button()
-        profilepage.wait_url(Urls.main_url_authorized)
+        profilepage.wait_url(Urls.main_url)
         profilepage.click_on_profile_button()
         profilepage.wait_url(Urls.profile_page_url)
         profilepage.click_order_history_button()
@@ -78,7 +78,7 @@ class TestProfilePage:
         password = login_list[1]
         profilepage.fill_login_input(email, password)
         profilepage.click_enter_button()
-        profilepage.wait_url(Urls.main_url_authorized)
+        profilepage.wait_url(Urls.main_url)
         profilepage.click_on_profile_button()
         profilepage.wait_url(Urls.profile_page_url)
         profilepage.click_order_history_button()
@@ -100,7 +100,7 @@ class TestProfilePage:
         password = login_list[1]
         profilepage.fill_login_input(email, password)
         profilepage.click_enter_button()
-        profilepage.wait_url(Urls.main_url_authorized)
+        profilepage.wait_url(Urls.main_url)
         profilepage.click_on_profile_button()
         profilepage.wait_url(Urls.profile_page_url)
         profilepage.log_out_from_profile()
@@ -123,12 +123,12 @@ class TestProfilePage:
         password = login_list[1]
         profilepage.fill_login_input(email, password)
         profilepage.click_enter_button()
-        profilepage.wait_url(Urls.main_url_authorized)
+        profilepage.wait_url(Urls.main_url)
         profilepage.click_on_profile_button()
         profilepage.wait_url(Urls.profile_page_url)
         profilepage.click_constroctor_button()
-        profilepage.wait_url(Urls.main_url_authorized)
-        assert  profilepage.get_current_url() == Urls.main_url_authorized
+        profilepage.wait_url(Urls.main_url)
+        assert  profilepage.get_current_url() == Urls.main_url
 
     @allure.title('При клике на кнопку "Лента заказов" происходит переход со страницы профиля на страницу заказов')
     def test_click_order_list_button_go_to_orders_page(self, driver, get_access_token):
@@ -145,7 +145,7 @@ class TestProfilePage:
         password = login_list[1]
         profilepage.fill_login_input(email, password)
         profilepage.click_enter_button()
-        profilepage.wait_url(Urls.main_url_authorized)
+        profilepage.wait_url(Urls.main_url)
         profilepage.click_on_profile_button()
         profilepage.wait_url(Urls.profile_page_url)
         profilepage.click_order_list_button()

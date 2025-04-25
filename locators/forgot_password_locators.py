@@ -1,7 +1,5 @@
 from selenium.webdriver.common.by import By
 
-from locators.base_page_locators import BasePageLocators
-
 
 class ForgotPasswordLocators:
     password_ap = [By.XPATH, ".//a[text()='Восстановить пароль']"]  # кнопка "Восстановить пароль"

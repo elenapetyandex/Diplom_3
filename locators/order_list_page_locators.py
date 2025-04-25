@@ -1,6 +1,6 @@
 from selenium.webdriver.common.by import By
 
-from locators.base_page_locators import BasePageLocators
+
 
 
 class OrderListPageLocators:
@@ -12,5 +12,11 @@ class OrderListPageLocators:
     orders_in_process = [By.XPATH, ".//ul[@class='OrderFeed_orderListReady__1YFem OrderFeed_orderList__cBvyi']/li"] # список заказов в работе
     all_orders_are_ready = [By.XPATH, ".//*[text()='Все текущие заказы готовы!']"] # Подпись под "В работе"
 
-    order_in_process = [By.XPATH, ".//ul[@class='OrderFeed_orderListReady__1YFem OrderFeed_orderList__cBvyi']/li[2]"]
+
     order_counter_today = [By.XPATH, ".//p[text()='Выполнено за сегодня:']/following-sibling::p"]
+    modal_window = [By.CLASS_NAME, "Modal_modal__loading__3534A"]
+
+
+
+
+

@@ -27,15 +27,19 @@ class OrderListPage(BasePage):
         self.wait_visibility_of_element(self.locators.all_orders_counter)
         return self.get_text(self.locators.all_orders_counter)
 
+
     @allure.step('Получить номера заказов из списка заказов "В процессе".')
     def get_list_orders_in_process(self):
+
         self.wait_visibility_of_element(self.locators.orders_in_process)
+        self.wait_invisibility_of_element(self.locators.all_orders_are_ready)
         orders_list = self.find_elements(self.locators.orders_in_process)
+
         orders_process_numbers = []
         for order in orders_list:
             text = order.text
             orders_process_numbers.append(text)
-
+        print(orders_process_numbers)
         return orders_process_numbers
 
     @allure.step('Получить число заказов из счетчика заказов "За сегодня".')
@@ -46,5 +50,9 @@ class OrderListPage(BasePage):
         element = self.find_element(self.locators.order_counter_today)
         return element.text
 
+    def find_first_ready_order(self):
+        self.wait_visibility_of_element(self.locators.ready_order_locator())
+        element = self.find_element(self.locators.ready_order_locator())
+        return element.text
 
 
