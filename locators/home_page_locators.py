@@ -3,7 +3,7 @@ from selenium.webdriver.common.by import By
 from locators.base_page_locators import BasePageLocators
 
 
-class HomePageLocators(BasePageLocators):
+class HomePageLocators:
 
     ingredients = [By.XPATH,".//ul[@class='BurgerIngredients_ingredients__list__2A-mT']"]  # все ингридиенты в конструкторе. 0 - булки, 1- соусы, 2 - начинки
     ingredient_modal_window = [By.XPATH, ".//*[text()='Детали ингредиента']"] # всплывающее окно с деталями ингредиента

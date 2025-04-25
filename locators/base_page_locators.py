@@ -16,3 +16,4 @@ class BasePageLocators:
         xpath = f".//p[text()='{order_number_in_form}']"
         order_in_order_history = [By.XPATH, xpath]
         return order_in_order_history
+

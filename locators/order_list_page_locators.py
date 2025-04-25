@@ -3,7 +3,7 @@ from selenium.webdriver.common.by import By
 from locators.base_page_locators import BasePageLocators
 
 
-class OrderListPageLocators(BasePageLocators):
+class OrderListPageLocators:
     orders_list = [By.CLASS_NAME, 'OrderFeed_list__OL59'] # список заказов на странице "Лента заказов"
     order_from_list = [By.XPATH, ".//ul[@class='OrderFeed_list__OL59']/li"] # узлы списка заказов
     order_number_from_list = [By.XPATH, ".//ul[@class='OrderFeed_list__OL59']/li/a/div/p[@class='text_type_digits-default"] # элемент с номером заказа

@@ -4,7 +4,7 @@ from selenium.webdriver.common.by import By
 from locators.base_page_locators import BasePageLocators
 
 
-class ProfilePageLocators(BasePageLocators):
+class ProfilePageLocators:
     reg_button = [By.LINK_TEXT, 'Зарегистрироваться'] # кнопка "зарегистрироваться" в форме логин в форме регистрации
 
     login_reg = (By.XPATH,".//a[text()='Войти']") #кнопка  "Войти" в форме входа для зарегистрированных пользователей
